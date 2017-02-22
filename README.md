@@ -21,3 +21,12 @@ gradle assembleDebug
 所有的设置关闭权限使用了`MODE_IGNORED`，不要使用`MODE_ERRORED`，否则会导致应用设置->应用->配置应用->应用权限崩溃。
 
 只测试了Android 6.0和7.0上可正常使用，其他版本如有问题请提issue。
+
+init.rc：
+on property:service.adb.tcp.port=*
+ restart adbd
+on property:service.adb.tcp.enable=1
+ setprop service.adb.tcp.port 5555
+on property:service.adb.tcp.enable=0
+ setprop service.adb.tcp.port -1
+
